@@ -1,0 +1,414 @@
+#:kivy 1.0
+
+ScreenManager:
+    LoginScreen:
+        name: 'login'
+        id: login
+    RegisterScreen:
+        name: 'register'
+        id: register
+    TokenScreen:
+        name: 'token'
+        id: token
+    HomeScreen:
+        name: 'home'
+        id: home
+    UploadScreen:
+        name: 'upload'
+        id: upload
+    DownloadScreen:
+        name: 'download'
+        id: download
+
+<LoginScreen>:
+    
+    MDCard:
+        size_hint: None, None
+        size: app.screen_width, app.screen_height
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        elevation: 10
+        radius: [36,]
+        padding: 25
+        spacing: 25
+        orientation: 'vertical'
+
+        Image:
+            pos_hint: {'center_x': 0.5, 'center_y': 1}
+            source: 'logo.png'
+            radius: 36, 36, 0, 0
+            size_hint_x: None
+            width: app.image_width
+
+        MDLabel:
+            text: 'LOGIN'
+            halign: 'center'
+            font_size: 18
+            pos_hint: {'center_x': 0.5}
+            multiline: False
+
+        MDTextFieldRound:
+            id: name
+            hint_text: 'Name'
+            icon_right: 'account'
+            size_hint_x: None
+            width: app.widget_width
+            font_size: 18
+            pos_hint: {'center_x': 0.5}
+            multiline: False
+
+        MDTextFieldRound:
+            id: email
+            hint_text: 'Email'
+            icon_right: 'at'
+            size_hint_x: None
+            width: app.widget_width
+            font_size: 18
+            pos_hint: {'center_x': 0.5}
+            multiline: False
+
+        MDLabel:
+            id: log_txt
+            text: ''
+            halign: 'center'
+            font_size: 18
+            pos_hint: {'center_x': 0.5}
+            multiline: False
+        
+        MDRoundFlatButton:
+            text: 'LOGIN'
+            font_size: 12
+            pos_hint: {'center_x': 0.5}
+            on_press: app.login()
+
+        MDRoundFlatButton:
+            text: 'REGISTER'
+            font_size: 12
+            pos_hint: {'center_x': 0.5}
+            on_press:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'register'
+
+        MDRoundFlatButton:
+            text: 'CLEAR'
+            font_size: 12
+            pos_hint: {'center_x': 0.5}
+            on_press: app.clear()
+        
+        Widget:
+            size_hint_y: None
+            height: 150
+
+<RegisterScreen>:
+    
+    MDCard:
+        size_hint: None, None
+        size: app.screen_width, app.screen_height
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        elevation: 10
+        radius: [36,]
+        padding: 25
+        spacing: 25
+        orientation: 'vertical'
+
+        Image:
+            pos_hint: {'center_x': 0.5, 'center_y': 1}
+            source: 'logo.png'
+            radius: 36, 36, 0, 0
+            size_hint_x: None
+            width: app.image_width
+
+        MDLabel:
+            text: 'REGISTER'
+            halign: 'center'
+            font_size: 18
+            pos_hint: {'center_x': 0.5}
+            multiline: False
+
+        MDTextFieldRound:
+            id: name
+            hint_text: 'Name'
+            icon_right: 'account'
+            size_hint_x: None
+            width: app.widget_width
+            font_size: 18
+            pos_hint: {'center_x': 0.5}
+            multiline: False
+
+        MDTextFieldRound:
+            id: email
+            hint_text: 'Email'
+            icon_right: 'at'
+            size_hint_x: None
+            width: app.widget_width
+            font_size: 18
+            pos_hint: {'center_x': 0.5}
+            multiline: False
+
+        MDLabel:
+            id: reg_txt
+            text: ''
+            halign: 'center'
+            font_size: 18
+            pos_hint: {'center_x': 0.5}
+            multiline: False
+
+        MDRoundFlatButton:
+            text: 'SUBMIT'
+            font_size: 12
+            pos_hint: {'center_x': 0.5}
+            on_press: app.register()
+
+        MDRoundFlatButton:
+            text: 'BACK'
+            font_size: 12
+            pos_hint: {'center_x': 0.5}
+            on_press: 
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'login'
+
+        Widget:
+            size_hint_y: None
+            height: 150
+
+<TokenScreen>:
+    MDCard:
+        size_hint: None, None
+        size: app.screen_width, app.screen_height
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        elevation: 10
+        radius: [36,]
+        padding: 25
+        spacing: 25
+        orientation: 'vertical'
+
+        MDLabel:
+            text: 'Enter your token:'
+            halign: 'center'
+            font_size: 18
+            pos_hint: {'center_x': 0.5}
+            multiline: False
+
+        MDTextFieldRound:
+            id: token_txt
+            hint_text: 'Token'
+            icon_right: 'lock'
+            size_hint_x: None
+            width: app.widget_width
+            font_size: 18
+            pos_hint: {'center_x': 0.5}
+            multiline: False
+        
+        MDLabel:
+            id: token_lbl
+            text: ''
+            halign: 'center'
+            font_size: 18
+            pos_hint: {'center_x': 0.5}
+            multiline: False
+
+        MDRoundFlatButton:
+            text: 'SUBMIT'
+            font_size: 12
+            pos_hint: {'center_x': 0.5}
+            on_press: app.token_verification()
+                
+        MDRoundFlatButton:
+            text: 'BACK'
+            font_size: 12
+            pos_hint: {'center_x': 0.5}
+            on_press: 
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'login'
+
+        Widget:
+            size_hint_y: None
+            height: 150
+
+<HomeScreen>:
+   
+    MDCard:
+        size_hint: None, None
+        size: app.screen_width, app.screen_height
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        elevation: 10
+        radius: [36,]
+        padding: 25
+        spacing: 25
+        orientation: 'vertical'
+
+        Image:
+            pos_hint: {'center_x': 0.5, 'center_y': 1}
+            source: 'logo.png'
+            radius: 36, 36, 0, 0
+            size_hint_x: None
+            width: app.image_width
+
+        MDRoundFlatButton:
+            text: 'CREATE STUDENT'
+            font_size: 12
+            pos_hint: {'center_x': 0.5}
+            on_press:
+                root.manager.transition.direction = 'left' 
+                root.manager.current = 'upload'
+                
+        MDRoundFlatButton:
+            text: 'FIND STUDENT'
+            font_size: 12
+            pos_hint: {'center_x': 0.5}
+            on_press:
+                root.manager.transition.direction = 'left' 
+                root.manager.current = 'download'
+
+        MDRoundFlatButton:
+            text: 'LOGOUT'
+            font_size: 12
+            pos_hint: {'center_x': 0.5}
+            on_press: app.logout()
+
+        Widget:
+            size_hint_y: None
+            height: 150
+
+<UploadScreen>:
+   
+    MDCard:
+        size_hint: None, None
+        size: app.screen_width, app.screen_height
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        elevation: 10
+        radius: [36,]
+        padding: 25
+        spacing: 25
+        orientation: 'vertical'
+
+        Image:
+            pos_hint: {'center_x': 0.5, 'center_y': 1}
+            source: 'logo.png'
+            radius: 36, 36, 0, 0
+            size_hint_x: None
+            width: app.image_width
+        
+        MDLabel:
+            id: upload_lbl
+            text: 'Enter new student information:'
+            halign: 'center'
+            font_size: 18
+            pos_hint: {'center_x': 0.5}
+            multiline: True
+
+        MDTextFieldRound:
+            id: name
+            hint_text: 'Name'
+            icon_right: 'account'
+            size_hint_x: None
+            width: app.widget_width
+            font_size: 18
+            pos_hint: {'center_x': 0.5}
+            multiline: False 
+        
+        MDTextFieldRound:
+            id: course
+            hint_text: 'Course'
+            icon_right: 'book'
+            size_hint_x: None
+            width: app.widget_width
+            font_size: 18
+            pos_hint: {'center_x': 0.5}
+            multiline: False 
+
+        MDLabel:
+            id: new_id_name_lbl
+            text: ''
+            halign: 'center'
+            font_size: 18
+            pos_hint: {'center_x': 0.5}
+            multiline: True
+
+        MDRoundFlatButton:
+            text: 'CREATE'
+            font_size: 12
+            pos_hint: {'center_x': 0.5}
+            on_press: app.upload()
+
+        MDRoundFlatButton:
+            text: 'BACK'
+            font_size: 12
+            pos_hint: {'center_x': 0.5}
+            on_press:
+                root.manager.transition.direction = 'right' 
+                root.manager.current = 'home'
+        
+        Widget:
+            size_hint_y: None
+            height: 150
+
+<DownloadScreen>:
+   
+    MDCard:
+        size_hint: None, None
+        size: app.screen_width, app.screen_height
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        elevation: 10
+        radius: [36,]
+        padding: 25
+        spacing: 25
+        orientation: 'vertical'
+
+        Image:
+            pos_hint: {'center_x': 0.5, 'center_y': 1}
+            source: 'logo.png'
+            radius: 36, 36, 0, 0
+            size_hint_x: None
+            width: app.image_width
+
+        MDLabel:
+            id: dl_id_lbl
+            text: 'Displaying information for:'
+            halign: 'left'
+            font_size: 18
+            pos_hint: {'center_x': 0.5}
+            multiline: True
+
+        MDLabel:
+            id: dl_name_lbl
+            text: 'Name:'
+            halign: 'left'
+            font_size: 18
+            pos_hint: {'center_x': 0.5}
+            multiline: True
+
+        MDLabel:
+            id: dl_course_lbl
+            text: 'Course:'
+            halign: 'left'
+            font_size: 18
+            pos_hint: {'center_x': 0.5}
+            multiline: True
+
+        MDTextFieldRound:
+            id: stnum_lbl
+            hint_text: 'Student ID'
+            icon_right: 'account'
+            size_hint_x: None
+            width: app.widget_width
+            font_size: 18
+            pos_hint: {'center_x': 0.5}
+            multiline: False 
+
+        MDRoundFlatButton:
+            text: 'FIND'
+            font_size: 12
+            pos_hint: {'center_x': 0.5}
+            on_press: app.download()
+
+        MDRoundFlatButton:
+            text: 'BACK'
+            font_size: 12
+            pos_hint: {'center_x': 0.5}
+            on_press: 
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'home'
+
+        Widget:
+            size_hint_y: None
+            height: 150
